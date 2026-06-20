@@ -53,7 +53,7 @@
 
 // ===== Countdown =====
 (function () {
-  const target = new Date("2026-11-12T09:00:00+05:30").getTime();
+  const target = new Date("2027-11-12T09:00:00+05:30").getTime();
   const eD = document.getElementById("cd-d"),
     eH = document.getElementById("cd-h"),
     eM = document.getElementById("cd-m"),
@@ -442,12 +442,12 @@ const PRICING_PHASES = [
   {
     name: "Free Pass",
     price: 0,
-    start: "2026-01-01",
-    end: "2026-07-31",
+    start: "2027-01-01",
+    end: "2027-07-31",
     note: "Free entry — limited time",
   },
-  { name: "Phase 2", price: 5000, start: "2026-08-01", end: "2026-10-31" },
-  { name: "Phase 3", price: 10000, start: "2026-11-01", end: "2027-02-19" },
+  { name: "Phase 2", price: 5000, start: "2027-08-01", end: "2027-10-31" },
+  { name: "Phase 3", price: 10000, start: "2027-11-01", end: "2027-02-19" },
 ];
 const PRICING_BENEFITS = [
   "All keynotes & sessions",

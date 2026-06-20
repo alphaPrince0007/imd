@@ -567,7 +567,7 @@ function handleFiles(fileList) {
     }
     const key = `${file.name}-${file.size}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const url = URL.createObjectURL(file);
-    const entry = { key, file, url, caption: "", year: "2026" };
+    const entry = { key, file, url, caption: "", year: "2027" };
     pending.push(entry);
 
     // Read true dimensions so the masonry tile gets an honest aspect ratio.
@@ -598,7 +598,7 @@ function renderPreviews() {
       <input type="text" class="pv-caption" placeholder="Caption (optional)"
         aria-label="Caption for this photo" value="${escapeAttr(p.caption)}">
       <select class="pv-year" aria-label="Edition year for this photo">
-        <option value="2026"${p.year === "2026" ? " selected" : ""}>2026</option>
+        <option value="2027"${p.year === "2027" ? " selected" : ""}>2027</option>
         <option value="2025"${p.year === "2025" ? " selected" : ""}>2025</option>
         <option value="2024"${p.year === "2024" ? " selected" : ""}>2024</option>
         <option value="2023"${p.year === "2023" ? " selected" : ""}>2023</option>

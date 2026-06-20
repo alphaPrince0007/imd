@@ -1,4 +1,4 @@
-# India Mushroom Days 2026 — Event Website (separated build)
+# India Mushroom Days 2027 — Event Website (separated build)
 
 Same site as before, now split into separate HTML, CSS, and JS files, with a
 **dynamic header and footer** that render from a single config object.

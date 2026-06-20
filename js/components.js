@@ -9,7 +9,7 @@ const SITE_CONFIG = {
   brand: "India Mushroom Days",
   // Shown at logoImgSize in the header and footer. NOTE: this file has
   // "October 2024, New Delhi" baked into the artwork — kept as-is per
-  // request; swap the file for a 2026/Pune version when one exists.
+  // request; swap the file for a 2027/New Delhi version when one exists.
   logoImage: "logo.png",
   // Primary navigation. `cta:true` renders the item as the orange button.
   nav: [
@@ -23,7 +23,7 @@ const SITE_CONFIG = {
     { label: "Register", href: "#register", cta: true },
   ],
   tagline:
-    "Where Global precision meets Indian cultivation. Pune · 12–14 November 2026.",
+    "Where Global precision meets Indian cultivation. New Delhi · 12–14 November 2027.",
   contact: {
     email: "info@indiamushroomdays.in",
     phone: "(+91)-9811775220",
@@ -57,7 +57,7 @@ const SITE_CONFIG = {
       ],
     },
   ],
-  legal: "© 2026 India Mushroom Days. All rights reserved.",
+  legal: "© 2027 India Mushroom Days. All rights reserved.",
   legalLinks: "Privacy · Terms · Cookies",
 };
 
