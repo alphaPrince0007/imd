@@ -1,4 +1,8 @@
 // ===== Scroll-driven harvest canvas =====
+// Disabled — hero now uses a plain black background instead of the
+// scroll-driven frame sequence. Re-enable by uncommenting this block
+// (and restoring .scroll-section's height + #harvest-canvas in CSS).
+/*
 (function () {
   const canvas = document.getElementById("harvest-canvas");
   const ctx = canvas.getContext("2d");
@@ -50,10 +54,11 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   fit();
 })();
+*/
 
 // ===== Countdown =====
 (function () {
-  const target = new Date("2027-11-12T09:00:00+05:30").getTime();
+  const target = new Date("2027-02-19T09:00:00+05:30").getTime();
   const eD = document.getElementById("cd-d"),
     eH = document.getElementById("cd-h"),
     eM = document.getElementById("cd-m"),
@@ -440,14 +445,18 @@ document.getElementById("spk-search").oninput = (e) =>
 // derive from this array, recomputed fresh against the current time.
 const PRICING_PHASES = [
   {
+    // start is intentionally far in the past — this tier is meant to read
+    // as "already open, free until the end date" from the moment the page
+    // goes live, not gated behind a future start date.
     name: "Free Pass",
     price: 0,
-    start: "2027-01-01",
-    end: "2027-07-31",
+    start: "2024-01-01",
+    end: "2026-07-31",
     note: "Free entry — limited time",
   },
-  { name: "Phase 2", price: 5000, start: "2027-08-01", end: "2027-10-31" },
-  { name: "Phase 3", price: 10000, start: "2027-11-01", end: "2027-02-19" },
+  { name: "Phase 2", price: 5000, start: "2026-08-01", end: "2026-10-31" },
+  // Phase 3 runs right up to the event itself (19 Feb 2027).
+  { name: "Phase 3", price: 10000, start: "2026-11-01", end: "2027-02-19" },
 ];
 const PRICING_BENEFITS = [
   "All keynotes & sessions",
@@ -541,7 +550,9 @@ function renderPricing() {
 
   document.getElementById("regWidgetText").textContent = allClosed
     ? "Registration is now closed."
-    : `${active.name} closes ${fmtLong(istEnd(active.end))}`;
+    : active
+      ? `${active.name} closes ${fmtLong(istEnd(active.end))}`
+      : `Registration opens ${fmtLong(istStart(PRICING_PHASES[0].start))}`;
 
   tickPricingCountdown();
 }
@@ -559,6 +570,31 @@ function tickPricingCountdown() {
 }
 renderPricing();
 setInterval(tickPricingCountdown, 60000);
+
+// ===== Hero free-pass badge =====
+// Pulls its date/countdown straight from PRICING_PHASES[0] so the hero
+// badge can never drift out of sync with the pricing table.
+function renderFreePassBadge() {
+  const label = document.getElementById("fpLabel");
+  if (!label) return;
+  const phase = PRICING_PHASES[0];
+  label.textContent = `Free Visitor Pass · until ${fmtLong(istEnd(phase.end))}`;
+  tickFreePassCountdown();
+}
+function tickFreePassCountdown() {
+  const el = document.getElementById("fpCountdown");
+  if (!el) return;
+  const diff = istEnd(PRICING_PHASES[0].end) - new Date();
+  if (diff <= 0) {
+    el.textContent = "";
+    return;
+  }
+  const d = Math.floor(diff / 864e5),
+    h = Math.floor((diff % 864e5) / 36e5);
+  el.textContent = `· ${d}d ${h}h left`;
+}
+renderFreePassBadge();
+setInterval(tickFreePassCountdown, 60000);
 
 // ===== FAQ =====
 const FAQ = [

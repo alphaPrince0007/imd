@@ -11,7 +11,10 @@ const SITE_CONFIG = {
   // "October 2024, New Delhi" baked into the artwork — kept as-is per
   // request; swap the file for a 2027/New Delhi version when one exists.
   logoImage: "logo.png",
-  // Primary navigation. `cta:true` renders the item as the orange button.
+  // Primary navigation. `cta:true` renders the item as the orange button;
+  // `gold:true` (on top of cta:true) renders it as the gold sponsor button
+  // instead. NOTE: points at #partners until a dedicated #sponsors
+  // page/form exists.
   nav: [
     { label: "About", href: "#about" },
     { label: "Schedule", href: "#schedule" },
@@ -20,10 +23,10 @@ const SITE_CONFIG = {
     { label: "Venue", href: "#venue" },
     { label: "Memories", href: "memories.html" },
     { label: "FAQ", href: "#faq" },
-    { label: "Register", href: "#register", cta: true },
+    { label: "Sponsor", href: "#partners", cta: true, gold: true },
   ],
   tagline:
-    "Where Global precision meets Indian cultivation. New Delhi · 12–14 November 2027.",
+    "Where Global precision meets Indian cultivation. New Delhi · 19-21 February 2027.",
   contact: {
     email: "info@indiamushroomdays.in",
     phone: "(+91)-9811775220",
@@ -77,7 +80,7 @@ function renderHeader(cfg) {
   const links = cfg.nav
     .map((item) =>
       item.cta
-        ? `<a href="${resolveHref(item.href)}" class="btn btn-primary" style="padding:9px 18px">${item.label}</a>`
+        ? `<a href="${resolveHref(item.href)}" class="btn ${item.gold ? "btn-gold" : "btn-primary"}" style="padding:9px 18px">${item.label}</a>`
         : `<a href="${resolveHref(item.href)}">${item.label}</a>`,
     )
     .join("\n      ");

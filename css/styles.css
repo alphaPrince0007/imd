@@ -5,10 +5,15 @@
   --surface: #111111;
   --border: #252525;
   --accent: #ff6b00;
+  --accent-bright: #ff8124;
   --muted: #b3b3b3;
   --success: #34c759;
   --soil: #1a1410;
   --maxw: 1240px;
+  /* Gold ramp — reserved for the sponsor "Chatak" CTA only. */
+  --gold-1: #b8860b;
+  --gold-2: #ffd700;
+  --gold-3: #c9a227;
 }
 * {
   margin: 0;
@@ -164,6 +169,7 @@ nav.scrolled {
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: var(--dark);
 }
 #harvest-stage {
   position: sticky;
@@ -171,8 +177,10 @@ nav.scrolled {
   height: 100vh;
 }
 .scroll-section {
+  /* Was 320vh to drive the scroll-linked frame animation (now disabled
+     in app.js) — back to a normal single-screen hero. */
   position: relative;
-  height: 320vh;
+  height: 100vh;
 }
 #harvest-canvas {
   position: absolute;
@@ -192,6 +200,17 @@ nav.scrolled {
     rgba(5, 5, 5, 0.85) 100%
   );
 }
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 26% 55%,
+    rgba(255, 129, 36, 0.22),
+    transparent 55%
+  );
+}
 .hero-content {
   position: absolute;
   inset: 0;
@@ -204,6 +223,7 @@ nav.scrolled {
   margin: 0 auto;
   padding: 0 28px;
   width: 100%;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 .hero h1 {
   font-size: clamp(2.8rem, 8vw, 6.5rem);
@@ -242,6 +262,68 @@ nav.scrolled {
   gap: 14px;
   flex-wrap: wrap;
 }
+
+/* Free Pass badge */
+.free-pass-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.35);
+  border-radius: 30px;
+  padding: 9px 18px;
+  margin-top: 22px;
+  font-family: "Space Grotesk";
+  font-size: 0.85rem;
+  color: var(--white);
+  box-shadow: 0 0 24px rgba(255, 107, 0, 0.16);
+}
+.fp-countdown {
+  color: var(--accent-bright);
+  font-weight: 600;
+}
+
+/* Gold "Chatak" sponsor CTA — gold is reserved for this button only */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--gold-1),
+    var(--gold-2) 50%,
+    var(--gold-3)
+  );
+  color: var(--dark);
+  box-shadow: 0 6px 20px rgba(184, 134, 11, 0.35);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(184, 134, 11, 0.5);
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: goldSheen 5s ease-in-out infinite;
+}
+@keyframes goldSheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  30%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
 .scroll-hint {
   position: absolute;
   bottom: 30px;
@@ -289,7 +371,8 @@ nav.scrolled {
   font-size: 2rem;
   font-weight: 700;
   display: block;
-  color: #fff;
+  color: var(--accent-bright);
+  text-shadow: 0 0 10px rgba(255, 129, 36, 0.35);
 }
 .cd-unit small {
   font-size: 0.65rem;
@@ -365,7 +448,8 @@ section {
   font-family: "Space Grotesk";
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-bright);
+  text-shadow: 0 0 16px rgba(255, 129, 36, 0.3);
   display: block;
 }
 .stat span {
@@ -1108,9 +1192,23 @@ footer {
   .cd-unit b {
     font-size: 1.5rem;
   }
+  .hero-cta {
+    flex-direction: column;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .free-pass-badge {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;

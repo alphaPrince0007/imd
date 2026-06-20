@@ -51,11 +51,12 @@
         <div class="hero">
           <canvas id="harvest-canvas" aria-hidden="true"></canvas>
           <div class="canvas-overlay"></div>
+          <div class="hero-glow" aria-hidden="true"></div>
           <div class="hero-content">
             <div class="hero-inner">
-              <span class="eyebrow"
+              <!-- <span class="eyebrow"
                 >New Delhi, India · 19-21 February 2027</span
-              >
+              > -->
               <h1>
                 India Mushroom Days'27
                 <span class="serif">Meet the Future</span>
@@ -88,21 +89,38 @@
                   <b id="cd-s">--</b><small>Secs</small>
                 </div>
               </div>
-              <div class="hero-cta" style="margin-top: 30px">
-                <a href="#register" class="btn btn-primary"
-                  >Visitor Registration →</a
+              <div class="free-pass-badge" aria-live="polite">
+                <span class="pulse"></span>
+                <span id="fpLabel">Free Visitor Pass</span>
+                <span class="fp-countdown" id="fpCountdown"></span>
+              </div>
+              <!-- TODO: point these at dedicated #sponsors / a real
+                   registration flow once they exist — #register and
+                   #partners are the closest live sections for now. -->
+              <div class="hero-cta" style="margin-top: 18px">
+                <a href="#register" class="btn btn-primary">Get Free Pass →</a>
+                <a
+                  href="https://www.cognitoforms.com/IMD27/SponsorIMD27"
+                  target="_blank"
+                  class="btn btn-gold"
+                  >Become a Sponsor</a
                 >
-                <a href="#schedule" class="btn btn-ghost">Exhibitor Register</a>
+                <a
+                  href="https://www.cognitoforms.com/IMD27/ExhibitorIMD27"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >Exhibitor Registration</a
+                >
               </div>
               <!-- <div class="reg-widget">
                 <span class="pulse"></span> 3,840 growers already registered
               </div> -->
             </div>
           </div>
-          <div class="scroll-hint">
+          <!-- <div class="scroll-hint">
             Scroll to harvest
             <div class="bar"></div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -294,7 +312,7 @@
     <section id="speakers" class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">Voices</span>
-        <h2>Featured speakers.</h2>
+        <h2>Featured guests.</h2>
         <p>
           A blend of Global cultivation pioneers and Indian agritech leaders.
         </p>
