@@ -1,223 +1,532 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>India Mushroom Days 2026 — Where Dutch Precision Meets Indian Cultivation</title>
-<meta name="description" content="India Mushroom Days 2026: the premier gathering of mushroom growers, agritech innovators, researchers and decision-makers. Pune, India · 12–14 November 2026.">
-<meta property="og:title" content="India Mushroom Days 2026">
-<meta property="og:description" content="Where Dutch precision meets Indian cultivation. 12–14 November 2026, Pune.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "India Mushroom Days 2026",
-  "startDate": "2026-11-12",
-  "endDate": "2026-11-14",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "location": {"@type": "Place", "name": "Agri-Tech Convention Centre, Pune", "address": "Pune, Maharashtra, India"},
-  "description": "The premier gathering of mushroom growers, agritech innovators and researchers."
-}
-</script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      India Mushroom Days 2026 — Where Dutch Precision Meets Indian Cultivation
+    </title>
+    <meta
+      name="description"
+      content="India Mushroom Days 2026: the premier gathering of mushroom growers, agritech innovators, researchers and decision-makers. Pune, India · 12–14 November 2026."
+    />
+    <meta property="og:title" content="India Mushroom Days 2026" />
+    <meta
+      property="og:description"
+      content="Where Dutch precision meets Indian cultivation. 12–14 November 2026, Pune."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "India Mushroom Days 2026",
+        "startDate": "2026-11-12",
+        "endDate": "2026-11-14",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "Agri-Tech Convention Centre, Pune",
+          "address": "Pune, Maharashtra, India"
+        },
+        "description": "The premier gathering of mushroom growers, agritech innovators and researchers."
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Dynamic header — rendered by js/components.js from SITE_CONFIG -->
+    <header id="site-header"></header>
 
-<!-- Dynamic header — rendered by js/components.js from SITE_CONFIG -->
-<header id="site-header"></header>
-
-
-<!-- HERO with scroll-driven harvest animation -->
-<div class="scroll-section" id="home">
-  <div id="harvest-stage">
-    <div class="hero">
-      <canvas id="harvest-canvas" aria-hidden="true"></canvas>
-      <div class="canvas-overlay"></div>
-      <div class="hero-content"><div class="hero-inner">
-        <span class="eyebrow">Pune, India · 12–14 November 2026</span>
-        <h1>India Mushroom Days <span class="serif">where precision is grown</span></h1>
-        <p>The premier gathering of mushroom growers, agritech innovators, researchers and decision-makers — built on Dutch cultivation science.</p>
-        <div class="hero-meta">
-          <span>📍 <span class="accent">Agri-Tech Convention Centre</span></span>
-          <span>🗓 <span class="accent">12–14 Nov 2026</span></span>
+    <!-- HERO with scroll-driven harvest animation -->
+    <div class="scroll-section" id="home">
+      <div id="harvest-stage">
+        <div class="hero">
+          <canvas id="harvest-canvas" aria-hidden="true"></canvas>
+          <div class="canvas-overlay"></div>
+          <div class="hero-content">
+            <div class="hero-inner">
+              <span class="eyebrow">Pune, India · 12–14 November 2026</span>
+              <h1>
+                India Mushroom Days
+                <span class="serif">where precision is grown</span>
+              </h1>
+              <p>
+                The premier gathering of mushroom growers, agritech innovators,
+                researchers and decision-makers — built on Dutch cultivation
+                science.
+              </p>
+              <div class="hero-meta">
+                <span
+                  >📍
+                  <span class="accent">Agri-Tech Convention Centre</span></span
+                >
+                <span>🗓 <span class="accent">12–14 Nov 2026</span></span>
+              </div>
+              <div
+                class="countdown"
+                id="countdown"
+                aria-label="Countdown to event"
+              >
+                <div class="cd-unit">
+                  <b id="cd-d">--</b><small>Days</small>
+                </div>
+                <div class="cd-unit">
+                  <b id="cd-h">--</b><small>Hours</small>
+                </div>
+                <div class="cd-unit">
+                  <b id="cd-m">--</b><small>Mins</small>
+                </div>
+                <div class="cd-unit">
+                  <b id="cd-s">--</b><small>Secs</small>
+                </div>
+              </div>
+              <div class="hero-cta" style="margin-top: 30px">
+                <a href="#register" class="btn btn-primary">Register Now →</a>
+                <a href="#schedule" class="btn btn-ghost">View Schedule</a>
+              </div>
+              <div class="reg-widget">
+                <span class="pulse"></span> 3,840 growers already registered
+              </div>
+            </div>
+          </div>
+          <div class="scroll-hint">
+            Scroll to harvest
+            <div class="bar"></div>
+          </div>
         </div>
-        <div class="countdown" id="countdown" aria-label="Countdown to event">
-          <div class="cd-unit"><b id="cd-d">--</b><small>Days</small></div>
-          <div class="cd-unit"><b id="cd-h">--</b><small>Hours</small></div>
-          <div class="cd-unit"><b id="cd-m">--</b><small>Mins</small></div>
-          <div class="cd-unit"><b id="cd-s">--</b><small>Secs</small></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">About the event</span>
+        <h2>
+          Three days where
+          <span class="serif accent">Dutch precision</span> meets Indian
+          cultivation.
+        </h2>
+        <p>
+          India Mushroom Days brings the world's most advanced growing science
+          to the fastest-growing market on earth. We exist to close the gap
+          between what Dutch greenhouses have perfected and what Indian farms
+          are ready to scale.
+        </p>
+      </div>
+      <div class="hl-grid">
+        <div class="hl-card reveal">
+          <span class="num">/ MISSION</span>
+          <h3>Grow smarter, together</h3>
+          <p>
+            Equip every grower — from single-tunnel farms to industrial
+            substrate plants — with climate control, robotics and yield science
+            that actually works in Indian conditions.
+          </p>
         </div>
-        <div class="hero-cta" style="margin-top:30px">
-          <a href="#register" class="btn btn-primary">Register Now →</a>
-          <a href="#schedule" class="btn btn-ghost">View Schedule</a>
+        <div class="hl-card reveal">
+          <span class="num">/ VISION</span>
+          <h3>One million tonnes by 2032</h3>
+          <p>
+            A connected national network of high-efficiency mushroom producers,
+            supported by research, supply chain and export pathways.
+          </p>
         </div>
-        <div class="reg-widget"><span class="pulse"></span> 3,840 growers already registered</div>
-      </div></div>
-      <div class="scroll-hint">Scroll to harvest<div class="bar"></div></div>
+        <div class="hl-card reveal">
+          <span class="num">/ ORGANIZERS</span>
+          <h3>IMD Council + KAS partners</h3>
+          <p>
+            Convened by the India Mushroom Council alongside Dutch agritech
+            institutes, with backing from state agriculture boards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="wrap stat-grid">
+        <div class="stat reveal">
+          <b data-count="5000">0</b><span>+ Attendees</span>
+        </div>
+        <div class="stat reveal">
+          <b data-count="50">0</b><span>+ Speakers</span>
+        </div>
+        <div class="stat reveal">
+          <b data-count="20">0</b><span>+ Countries</span>
+        </div>
+        <div class="stat reveal">
+          <b data-count="100">0</b><span>+ Exhibitors</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What's on</span>
+        <h2>Six reasons to be in the room.</h2>
+      </div>
+      <div class="hl-grid">
+        <div class="hl-card reveal">
+          <span class="num">/ 01</span>
+          <h3>Keynote Sessions</h3>
+          <p>
+            Wageningen researchers and India's top yield engineers on stage.
+          </p>
+        </div>
+        <div class="hl-card reveal">
+          <span class="num">/ 02</span>
+          <h3>Robotics Showcase</h3>
+          <p>
+            Live autonomous harvesting demos — the systems that pick without
+            bruising.
+          </p>
+        </div>
+        <div class="hl-card reveal">
+          <span class="num">/ 03</span>
+          <h3>Hands-on Workshops</h3>
+          <p>Substrate science, climate tuning and post-harvest cold chain.</p>
+        </div>
+        <div class="hl-card reveal">
+          <span class="num">/ 04</span>
+          <h3>Exhibition Floor</h3>
+          <p>100+ suppliers across compost, controls, packaging and export.</p>
+        </div>
+        <div class="hl-card reveal">
+          <span class="num">/ 05</span>
+          <h3>Grower Awards</h3>
+          <p>
+            Recognising the year's highest-yield and most sustainable farms.
+          </p>
+        </div>
+        <div class="hl-card reveal">
+          <span class="num">/ 06</span>
+          <h3>Networking</h3>
+          <p>Curated buyer–grower matchmaking and an evening on the terrace.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="schedule" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Agenda</span>
+        <h2>Day-by-day schedule.</h2>
+        <p>
+          Filter by track to plan your three days. Full agenda confirmed October
+          2026.
+        </p>
+      </div>
+      <div class="sched-filters reveal">
+        <button class="filt active" data-f="all">All tracks</button>
+        <button class="filt" data-f="science">Science</button>
+        <button class="filt" data-f="tech">Technology</button>
+        <button class="filt" data-f="business">Business</button>
+      </div>
+      <div id="sessions"></div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section id="partners" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Backed by</span>
+        <h2>
+          Institutions and partners
+          <span class="serif accent">behind the event</span>.
+        </h2>
+        <p>
+          From Dutch research institutes to India's agricultural finance and
+          industry bodies — the organisations putting their name behind this
+          gathering.
+        </p>
+      </div>
+
+      <div class="partner-tier reveal">
+        <span class="partner-tier-label">In association with</span>
+        <div
+          class="partner-assoc-grid"
+          id="partnersAssociation"
+          aria-label="Lead institutional partners"
+        ></div>
+      </div>
+
+      <div class="partner-tier reveal">
+        <span class="partner-tier-label">Strategic partners</span>
+        <div
+          class="partner-strategic-grid"
+          id="partnersStrategic"
+          aria-label="Strategic partners"
+        ></div>
+      </div>
+
+      <div class="partner-tier reveal">
+        <span class="partner-tier-label"
+          >Supporting partners &amp; sponsors</span
+        >
+        <div
+          class="partner-marquee-wrap"
+          id="partnersSupportingWrap"
+          aria-label="Supporting partners and sponsors"
+        ></div>
+      </div>
+
+      <div class="partner-cta reveal">
+        <p>Want your organisation on this list next year?</p>
+        <a
+          class="btn btn-ghost"
+          href="mailto:info@indiamushroomdays.in?subject=Partnership%20enquiry"
+          >Become a partner →</a
+        >
+      </div>
+    </section>
+
+    <!-- SPEAKERS -->
+    <section id="speakers" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Voices</span>
+        <h2>Featured speakers.</h2>
+        <p>
+          A blend of Dutch cultivation pioneers and Indian agritech leaders.
+        </p>
+      </div>
+      <div class="field" style="max-width: 360px; margin-bottom: 30px">
+        <input
+          type="search"
+          id="spk-search"
+          placeholder="Search speakers…"
+          aria-label="Search speakers"
+        />
+      </div>
+      <div class="spk-grid" id="spk-grid"></div>
+    </section>
+
+    <!-- PRICING / REGISTER -->
+    <section id="register" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Tickets</span>
+        <h2>Reserve your place.</h2>
+        <p>
+          Free entry until 31 July. Price rises in each phase, so register
+          early.
+        </p>
+      </div>
+      <div class="price-grid" id="pricingGrid" style="margin-bottom: 70px"></div>
+
+      <div id="regform" class="split">
+        <div class="reveal">
+          <span class="eyebrow">Registration</span>
+          <h2 style="font-size: 2rem; margin: 14px 0">Tell us who's coming.</h2>
+          <p style="color: var(--muted)">
+            Takes under two minutes. You'll receive confirmation and a calendar
+            invite by email.
+          </p>
+          <div class="reg-widget">
+            <span class="pulse"></span>
+            <span id="regWidgetText">Loading current pricing…</span>
+          </div>
+        </div>
+        <form
+          class="reveal"
+          onsubmit="
+            event.preventDefault();
+            this.querySelector('.done').style.display = 'block';
+            this.querySelector('.btn').textContent = 'Registered ✓';
+          "
+        >
+          <div class="form-row">
+            <div class="field">
+              <label for="fn">First name</label><input id="fn" required />
+            </div>
+            <div class="field">
+              <label for="ln">Last name</label><input id="ln" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="em">Email</label
+              ><input id="em" type="email" required />
+            </div>
+            <div class="field">
+              <label for="ph">Phone</label><input id="ph" type="tel" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="org">Organization</label><input id="org" />
+            </div>
+            <div class="field">
+              <label for="jt">Job title</label><input id="jt" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="co">Country</label
+              ><select id="co">
+                <option>India</option>
+                <option>Netherlands</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="tt">Ticket type</label
+              ><select id="tt">
+                <option>Free Pass</option>
+                <option>Phase 2</option>
+                <option>Phase 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="sr">Special requirements</label
+            ><textarea id="sr" style="min-height: 80px"></textarea>
+          </div>
+          <div class="field checkbox">
+            <input type="checkbox" id="cs" required /><label
+              for="cs"
+              style="margin: 0"
+              >I agree to the privacy policy and to receive event
+              updates.</label
+            >
+          </div>
+          <button
+            class="btn btn-primary"
+            style="width: 100%; justify-content: center"
+            type="submit"
+          >
+            Complete registration →
+          </button>
+          <p
+            class="done"
+            style="
+              display: none;
+              color: var(--success);
+              margin-top: 14px;
+              text-align: center;
+            "
+          >
+            Thanks — check your inbox for confirmation.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- VENUE -->
+    <section id="venue" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Getting there</span>
+        <h2>Venue & travel.</h2>
+      </div>
+      <div class="split">
+        <div class="reveal">
+          <h3 style="font-size: 1.4rem; margin-bottom: 10px">
+            Agri-Tech Convention Centre
+          </h3>
+          <p style="color: var(--muted); margin-bottom: 24px">
+            Hinjawadi Phase 2, Pune, Maharashtra 411057, India
+          </p>
+          <div
+            style="
+              aspect-ratio: 16/10;
+              background: var(--surface);
+              border: 1px solid var(--border);
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--border);
+              font-family: &quot;Space Grotesk&quot;;
+              font-size: 1.2rem;
+            "
+          >
+            Map view
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="hl-grid" style="grid-template-columns: 1fr">
+            <div class="hl-card">
+              <span class="num">/ AIR</span>
+              <h3>Pune International (PNQ)</h3>
+              <p>
+                35 min by taxi. Mumbai (BOM) is 3 hrs with direct expressway
+                shuttle.
+              </p>
+            </div>
+            <div class="hl-card">
+              <span class="num">/ STAY</span>
+              <h3>Partner hotels</h3>
+              <p>
+                Discounted rates at four hotels within 2 km — codes in your
+                confirmation email.
+              </p>
+            </div>
+            <div class="hl-card">
+              <span class="num">/ VISA</span>
+              <h3>e-Visa support</h3>
+              <p>
+                International attendees receive an invitation letter for visa
+                applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Questions</span>
+        <h2>Frequently asked.</h2>
+      </div>
+      <div id="faqs" style="max-width: 820px"></div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band">
+      <div class="wrap reveal">
+        <h2>The harvest won't wait.</h2>
+        <p>
+          Free entry ends 31 July, then the price rises in each phase. Join
+          3,800+ growers shaping the future of Indian cultivation.
+        </p>
+        <a href="#register" class="btn btn-primary">Register Now →</a>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- ABOUT -->
-<section id="about" class="wrap">
-  <div class="sec-head reveal">
-    <span class="eyebrow">About the event</span>
-    <h2>Three days where <span class="serif accent">Dutch precision</span> meets Indian cultivation.</h2>
-    <p>India Mushroom Days brings the world's most advanced growing science to the fastest-growing market on earth. We exist to close the gap between what Dutch greenhouses have perfected and what Indian farms are ready to scale.</p>
-  </div>
-  <div class="hl-grid">
-    <div class="hl-card reveal"><span class="num">/ MISSION</span><h3>Grow smarter, together</h3><p>Equip every grower — from single-tunnel farms to industrial substrate plants — with climate control, robotics and yield science that actually works in Indian conditions.</p></div>
-    <div class="hl-card reveal"><span class="num">/ VISION</span><h3>One million tonnes by 2032</h3><p>A connected national network of high-efficiency mushroom producers, supported by research, supply chain and export pathways.</p></div>
-    <div class="hl-card reveal"><span class="num">/ ORGANIZERS</span><h3>IMD Council + KAS partners</h3><p>Convened by the India Mushroom Council alongside Dutch agritech institutes, with backing from state agriculture boards.</p></div>
-  </div>
-</section>
+    <!-- Dynamic footer — rendered by js/components.js from SITE_CONFIG -->
+    <footer id="site-footer" class="site-footer"></footer>
 
-<!-- STATS -->
-<section class="stats"><div class="wrap stat-grid">
-  <div class="stat reveal"><b data-count="5000">0</b><span>+ Attendees</span></div>
-  <div class="stat reveal"><b data-count="50">0</b><span>+ Speakers</span></div>
-  <div class="stat reveal"><b data-count="20">0</b><span>+ Countries</span></div>
-  <div class="stat reveal"><b data-count="100">0</b><span>+ Exhibitors</span></div>
-</div></section>
-
-<!-- HIGHLIGHTS -->
-<section class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">What's on</span><h2>Six reasons to be in the room.</h2></div>
-  <div class="hl-grid">
-    <div class="hl-card reveal"><span class="num">/ 01</span><h3>Keynote Sessions</h3><p>Wageningen researchers and India's top yield engineers on stage.</p></div>
-    <div class="hl-card reveal"><span class="num">/ 02</span><h3>Robotics Showcase</h3><p>Live autonomous harvesting demos — the systems that pick without bruising.</p></div>
-    <div class="hl-card reveal"><span class="num">/ 03</span><h3>Hands-on Workshops</h3><p>Substrate science, climate tuning and post-harvest cold chain.</p></div>
-    <div class="hl-card reveal"><span class="num">/ 04</span><h3>Exhibition Floor</h3><p>100+ suppliers across compost, controls, packaging and export.</p></div>
-    <div class="hl-card reveal"><span class="num">/ 05</span><h3>Grower Awards</h3><p>Recognising the year's highest-yield and most sustainable farms.</p></div>
-    <div class="hl-card reveal"><span class="num">/ 06</span><h3>Networking</h3><p>Curated buyer–grower matchmaking and an evening on the terrace.</p></div>
-  </div>
-</section>
-
-<!-- SCHEDULE -->
-<section id="schedule" class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Agenda</span><h2>Day-by-day schedule.</h2><p>Filter by track to plan your three days. Full agenda confirmed October 2026.</p></div>
-  <div class="sched-filters reveal">
-    <button class="filt active" data-f="all">All tracks</button>
-    <button class="filt" data-f="science">Science</button>
-    <button class="filt" data-f="tech">Technology</button>
-    <button class="filt" data-f="business">Business</button>
-  </div>
-  <div id="sessions"></div>
-</section>
-
-<!-- SPEAKERS -->
-<section id="speakers" class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Voices</span><h2>Featured speakers.</h2><p>A blend of Dutch cultivation pioneers and Indian agritech leaders.</p></div>
-  <div class="field" style="max-width:360px;margin-bottom:30px">
-    <input type="search" id="spk-search" placeholder="Search speakers…" aria-label="Search speakers">
-  </div>
-  <div class="spk-grid" id="spk-grid"></div>
-</section>
-
-<!-- PRICING / REGISTER -->
-<section id="register" class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Tickets</span><h2>Reserve your place.</h2></div>
-  <div class="price-grid" style="margin-bottom:70px">
-    <div class="price reveal"><h3>Early Bird</h3><div class="amt">₹6,900<small>/pass</small></div>
-      <ul><li>All keynotes & sessions</li><li>Exhibition floor access</li><li>Welcome reception</li><li>Digital agenda</li></ul>
-      <a href="#regform" class="btn btn-ghost">Choose Early Bird</a></div>
-    <div class="price feature reveal"><span class="ribbon">Most popular</span><h3>Standard</h3><div class="amt">₹11,500<small>/pass</small></div>
-      <ul><li>Everything in Early Bird</li><li>All hands-on workshops</li><li>Robotics demo priority seating</li><li>Lunch all three days</li></ul>
-      <a href="#regform" class="btn btn-primary">Choose Standard</a></div>
-    <div class="price reveal"><h3>VIP</h3><div class="amt">₹24,000<small>/pass</small></div>
-      <ul><li>Everything in Standard</li><li>Speaker dinner & terrace evening</li><li>Buyer–grower matchmaking</li><li>Farm tour shuttle</li></ul>
-      <a href="#regform" class="btn btn-ghost">Choose VIP</a></div>
-  </div>
-
-  <div id="regform" class="split">
-    <div class="reveal">
-      <span class="eyebrow">Registration</span>
-      <h2 style="font-size:2rem;margin:14px 0">Tell us who's coming.</h2>
-      <p style="color:var(--muted)">Takes under two minutes. You'll receive confirmation and a calendar invite by email.</p>
-      <div class="reg-widget"><span class="pulse"></span> Standard tier closes 30 Sept 2026</div>
-    </div>
-    <form class="reveal" onsubmit="event.preventDefault();this.querySelector('.done').style.display='block';this.querySelector('.btn').textContent='Registered ✓'">
-      <div class="form-row">
-        <div class="field"><label for="fn">First name</label><input id="fn" required></div>
-        <div class="field"><label for="ln">Last name</label><input id="ln" required></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="em">Email</label><input id="em" type="email" required></div>
-        <div class="field"><label for="ph">Phone</label><input id="ph" type="tel"></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="org">Organization</label><input id="org"></div>
-        <div class="field"><label for="jt">Job title</label><input id="jt"></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="co">Country</label><select id="co"><option>India</option><option>Netherlands</option><option>Other</option></select></div>
-        <div class="field"><label for="tt">Ticket type</label><select id="tt"><option>Early Bird</option><option>Standard</option><option>VIP</option></select></div>
-      </div>
-      <div class="field"><label for="sr">Special requirements</label><textarea id="sr" style="min-height:80px"></textarea></div>
-      <div class="field checkbox"><input type="checkbox" id="cs" required><label for="cs" style="margin:0">I agree to the privacy policy and to receive event updates.</label></div>
-      <button class="btn btn-primary" style="width:100%;justify-content:center" type="submit">Complete registration →</button>
-      <p class="done" style="display:none;color:var(--success);margin-top:14px;text-align:center">Thanks — check your inbox for confirmation.</p>
-    </form>
-  </div>
-</section>
-
-<!-- VENUE -->
-<section id="venue" class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Getting there</span><h2>Venue & travel.</h2></div>
-  <div class="split">
-    <div class="reveal">
-      <h3 style="font-size:1.4rem;margin-bottom:10px">Agri-Tech Convention Centre</h3>
-      <p style="color:var(--muted);margin-bottom:24px">Hinjawadi Phase 2, Pune, Maharashtra 411057, India</p>
-      <div style="aspect-ratio:16/10;background:var(--surface);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--border);font-family:'Space Grotesk';font-size:1.2rem">Map view</div>
-    </div>
-    <div class="reveal">
-      <div class="hl-grid" style="grid-template-columns:1fr">
-        <div class="hl-card"><span class="num">/ AIR</span><h3>Pune International (PNQ)</h3><p>35 min by taxi. Mumbai (BOM) is 3 hrs with direct expressway shuttle.</p></div>
-        <div class="hl-card"><span class="num">/ STAY</span><h3>Partner hotels</h3><p>Discounted rates at four hotels within 2 km — codes in your confirmation email.</p></div>
-        <div class="hl-card"><span class="num">/ VISA</span><h3>e-Visa support</h3><p>International attendees receive an invitation letter for visa applications.</p></div>
+    <button id="toTop" aria-label="Back to top">↑</button>
+    <div id="cookie">
+      <h5>We use cookies</h5>
+      This site uses cookies to improve your experience and analyse traffic.
+      <div class="row">
+        <button
+          class="btn btn-primary"
+          onclick="document.getElementById('cookie').classList.add('hide')"
+        >
+          Accept
+        </button>
+        <button
+          class="btn btn-ghost"
+          onclick="document.getElementById('cookie').classList.add('hide')"
+        >
+          Decline
+        </button>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section id="faq" class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Questions</span><h2>Frequently asked.</h2></div>
-  <div id="faqs" style="max-width:820px"></div>
-</section>
-
-<!-- CTA BAND -->
-<div class="cta-band">
-  <div class="wrap reveal">
-    <h2>The harvest won't wait.</h2>
-    <p>Early Bird pricing ends soon. Join 3,800+ growers shaping the future of Indian cultivation.</p>
-    <a href="#register" class="btn btn-primary">Register Now →</a>
-  </div>
-</div>
-
-
-
-<!-- Dynamic footer — rendered by js/components.js from SITE_CONFIG -->
-<footer id="site-footer" class="site-footer"></footer>
-
-<button id="toTop" aria-label="Back to top">↑</button>
-<div id="cookie">
-  <h5>We use cookies</h5>
-  This site uses cookies to improve your experience and analyse traffic.
-  <div class="row">
-    <button class="btn btn-primary" onclick="document.getElementById('cookie').classList.add('hide')">Accept</button>
-    <button class="btn btn-ghost" onclick="document.getElementById('cookie').classList.add('hide')">Decline</button>
-  </div>
-</div>
-
-<!-- Scripts: frames data first, then dynamic chrome, then app logic -->
-<script src="js/frames.js"></script>
-<script src="js/components.js"></script>
-<script src="js/app.js"></script>
-</body>
+    <!-- Scripts: frames data first, then dynamic chrome, then app logic -->
+    <script src="js/frames.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>

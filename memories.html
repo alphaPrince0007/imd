@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories — India Mushroom Days 2026</title>
+<meta name="description" content="Past editions of India Mushroom Days in photos — keynotes, the exhibition floor, workshops, awards and the people who showed up.">
+<meta property="og:title" content="Memories — India Mushroom Days">
+<meta property="og:description" content="Three years of harvest, in photos. Browse past editions and add your own.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- Dynamic header — rendered by js/components.js from SITE_CONFIG -->
+<header id="site-header"></header>
+
+<!-- HERO -->
+<section class="wrap mem-hero">
+  <div class="reveal">
+    <span class="eyebrow">Past editions</span>
+    <h1 class="mem-h1">Three years of <span class="serif accent">harvest</span>.</h1>
+    <p>A working record of what's actually happened on the floor — keynotes, the robotics aisle, late workshops, the awards stage. Filter by edition or add a photo of your own.</p>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<section class="stats mem-stats"><div class="wrap stat-grid">
+  <div class="stat reveal"><b data-count="3">0</b><span>Editions held</span></div>
+  <div class="stat reveal"><b data-count="1240">0</b><span>+ Photos</span></div>
+  <div class="stat reveal"><b data-count="4">0</b><span>Host cities</span></div>
+</div></section>
+
+<!-- GALLERY -->
+<section id="gallery-section" class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow">Browse</span>
+    <h2>The archive.</h2>
+    <p>Every edition, every track — filter to find your moment.</p>
+  </div>
+
+  <div class="mem-filters reveal">
+    <div class="filt-group">
+      <span class="filt-label">Edition</span>
+      <div class="sched-filters" id="yearFilters">
+        <button class="filt active" data-yr="all">All</button>
+        <button class="filt" data-yr="2025">2025</button>
+        <button class="filt" data-yr="2024">2024</button>
+        <button class="filt" data-yr="2023">2023</button>
+      </div>
+    </div>
+    <div class="filt-group">
+      <span class="filt-label">Category</span>
+      <div class="sched-filters" id="catFilters">
+        <button class="filt active" data-cat="all">All</button>
+        <button class="filt" data-cat="Keynotes">Keynotes</button>
+        <button class="filt" data-cat="Exhibition">Exhibition</button>
+        <button class="filt" data-cat="Workshops">Workshops</button>
+        <button class="filt" data-cat="Awards">Awards</button>
+        <button class="filt" data-cat="Networking">Networking</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="mem-count" id="memCount" aria-live="polite"></p>
+  <div class="masonry" id="gallery" aria-live="polite"></div>
+  <p class="mem-empty" id="memEmpty" hidden>No photos yet for this year — be the first to add one.</p>
+</section>
+
+<!-- ADD PHOTOS -->
+<section id="add-photos" class="wrap">
+  <div class="sec-head reveal">
+    <span class="eyebrow">Contribute</span>
+    <h2>Add your photos.</h2>
+    <p>Were you there? Drop your shots in below — they'll join the archive right away.</p>
+  </div>
+
+  <div class="upload-panel reveal">
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Drag and drop photos here, or press Enter to browse files">
+      <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
+      <p class="dz-title">Drag photos here</p>
+      <p class="dz-sub">or <span class="dz-link">browse your files</span> — JPG, PNG, WEBP or GIF, up to 8MB each</p>
+    </div>
+
+    <div id="uploadErrors" class="upload-errors" role="alert" aria-live="assertive"></div>
+
+    <div id="previewGrid" class="preview-grid"></div>
+
+    <div id="uploadFields" class="upload-fields" hidden>
+      <div class="field" style="max-width:280px">
+        <label for="upCat">Category for this batch</label>
+        <select id="upCat">
+          <option>Keynotes</option>
+          <option>Exhibition</option>
+          <option>Workshops</option>
+          <option>Awards</option>
+          <option>Networking</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="addToGallery" type="button">Add to gallery →</button>
+      <p class="upload-success" id="uploadSuccess" role="status" hidden>Added to gallery ✓</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-close" id="lbClose" aria-label="Close photo viewer (Esc)">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <figure class="lb-figure">
+    <img id="lbImg" src="" alt="" loading="eager">
+    <figcaption>
+      <strong id="lbCaption"></strong>
+      <span id="lbMeta"></span>
+    </figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
+</div>
+
+<!-- Dynamic footer — rendered by js/components.js from SITE_CONFIG -->
+<footer id="site-footer" class="site-footer"></footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+<div id="cookie">
+  <h5>We use cookies</h5>
+  This site uses cookies to improve your experience and analyse traffic.
+  <div class="row">
+    <button class="btn btn-primary" onclick="document.getElementById('cookie').classList.add('hide')">Accept</button>
+    <button class="btn btn-ghost" onclick="document.getElementById('cookie').classList.add('hide')">Decline</button>
+  </div>
+</div>
+
+<!-- Scripts: dynamic chrome first, then gallery logic -->
+<script src="js/components.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>

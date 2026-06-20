@@ -7,10 +7,15 @@
 
 const SITE_CONFIG = {
   brand: "India Mushroom Days",
+  // Shown at logoImgSize in the header and footer. NOTE: this file has
+  // "October 2024, New Delhi" baked into the artwork — kept as-is per
+  // request; swap the file for a 2026/Pune version when one exists.
+  logoImage: "logo.png",
   // Primary navigation. `cta:true` renders the item as the orange button.
   nav: [
     { label: "About", href: "#about" },
     { label: "Schedule", href: "#schedule" },
+    { label: "Partners", href: "#partners" },
     { label: "Speakers", href: "#speakers" },
     { label: "Venue", href: "#venue" },
     { label: "Memories", href: "memories.html" },
@@ -36,6 +41,7 @@ const SITE_CONFIG = {
       links: [
         { label: "About", href: "#about" },
         { label: "Schedule", href: "#schedule" },
+        { label: "Partners", href: "#partners" },
         { label: "Speakers", href: "#speakers" },
         { label: "Memories", href: "memories.html" },
         { label: "Register", href: "#register" },
@@ -74,7 +80,7 @@ function renderHeader(cfg) {
 
   return `
   <nav id="nav"><div class="wrap nav-in">
-    <a href="${resolveHref("#home")}" class="logo"><span class="dot"></span>${cfg.brand.replace(/ /g, "&nbsp;")}</a>
+    <a href="${resolveHref("#home")}" class="logo"><img src="${cfg.logoImage}" alt="${cfg.brand} logo" class="logo-img">${cfg.brand.replace(/ /g, "&nbsp;")}</a>
     <div class="nav-links">
       ${links}
     </div>
@@ -97,7 +103,7 @@ function renderFooter(cfg) {
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="logo" style="margin-bottom:16px"><span class="dot"></span>${cfg.brand}</div>
+        <div class="logo" style="margin-bottom:16px"><img src="${cfg.logoImage}" alt="${cfg.brand} logo" class="logo-img" loading="lazy">${cfg.brand}</div>
         <p>${cfg.tagline}</p>
         <div class="news">
           <input type="email" placeholder="Newsletter email" aria-label="Newsletter signup">

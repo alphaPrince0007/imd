@@ -40,8 +40,8 @@
 
 // ===== Nav scrolled =====
 addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',scrollY>40);
-  document.getElementById('toTop').classList.toggle('show',scrollY>600);
+  document.getElementById('nav')?.classList.toggle('scrolled',scrollY>40);
+  document.getElementById('toTop')?.classList.toggle('show',scrollY>600);
 },{passive:true});
 document.getElementById('toTop').onclick=()=>scrollTo({top:0,behavior:'smooth'});
 
@@ -79,6 +79,70 @@ document.querySelectorAll('.filt').forEach(b=>b.onclick=()=>{
   b.classList.add('active');renderSess(b.dataset.f);
 });
 
+// ===== Partners =====
+// Placeholder wordmark logos generated as inline SVG data URIs, since no
+// real partner logo assets exist yet. Swap `logo` for a real asset path
+// (SVG preferred, PNG fallback) and `url` for each partner's actual site
+// once partnerships are confirmed — `tier`/`alt`/`descriptor` carry over.
+function plogo(short, hue) {
+  const mark = short.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56">
+    <circle cx="28" cy="28" r="22" fill="hsl(${hue},58%,46%)"/>
+    <text x="28" y="33" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">${mark}</text>
+    <text x="60" y="33" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="600" fill="#e9e9e9">${short}</text>
+  </svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+const PARTNERS = [
+ { name: 'Wageningen University & Research', short: 'Wageningen UR', url: 'https://example.org/partners/wageningen-ur', tier: 'association', alt: 'Wageningen University & Research logo', descriptor: 'Lead knowledge partner · Netherlands', hue: 212 },
+ { name: 'Ministry of Agriculture & Farmers Welfare, Government of India', short: 'Govt. of India, Agriculture', url: 'https://example.org/partners/moafw-india', tier: 'association', alt: 'Ministry of Agriculture & Farmers Welfare, Government of India logo', descriptor: 'Official endorsement · Government of India', hue: 198 },
+
+ { name: 'NABARD', short: 'NABARD', url: 'https://example.org/partners/nabard', tier: 'strategic', alt: 'NABARD logo', hue: 150 },
+ { name: 'Netherlands Enterprise Agency (RVO)', short: 'RVO', url: 'https://example.org/partners/rvo', tier: 'strategic', alt: 'Netherlands Enterprise Agency (RVO) logo', hue: 205 },
+ { name: 'Indian Council of Agricultural Research', short: 'ICAR', url: 'https://example.org/partners/icar', tier: 'strategic', alt: 'Indian Council of Agricultural Research logo', hue: 95 },
+ { name: 'Sylvan Europe', short: 'Sylvan Europe', url: 'https://example.org/partners/sylvan-europe', tier: 'strategic', alt: 'Sylvan Europe logo', hue: 265 },
+
+ { name: 'ClimaGrow', short: 'ClimaGrow', url: 'https://example.org/partners/climagrow', tier: 'supporting', alt: 'ClimaGrow logo', hue: 165 },
+ { name: 'RoboPick', short: 'RoboPick', url: 'https://example.org/partners/robopick', tier: 'supporting', alt: 'RoboPick logo', hue: 220 },
+ { name: 'CoolChain NL', short: 'CoolChain NL', url: 'https://example.org/partners/coolchain-nl', tier: 'supporting', alt: 'CoolChain NL logo', hue: 190 },
+ { name: 'AgriExport India', short: 'AgriExport India', url: 'https://example.org/partners/agriexport-india', tier: 'supporting', alt: 'AgriExport India logo', hue: 140 },
+ { name: 'IARI New Delhi', short: 'IARI New Delhi', url: 'https://example.org/partners/iari', tier: 'supporting', alt: 'IARI New Delhi logo', hue: 60 },
+ { name: 'KAS Partners', short: 'KAS Partners', url: 'https://example.org/partners/kas-partners', tier: 'supporting', alt: 'KAS Partners logo', hue: 280 },
+ { name: 'Maharashtra Agri-Tech Cluster', short: 'Maharashtra Agri-Tech Cluster', url: 'https://example.org/partners/maharashtra-agritech', tier: 'supporting', alt: 'Maharashtra Agri-Tech Cluster logo', hue: 175 },
+ { name: 'Mushroom Growers Association of India', short: 'Mushroom Growers Assoc. of India', url: 'https://example.org/partners/mgai', tier: 'supporting', alt: 'Mushroom Growers Association of India logo', hue: 340 },
+].map(p => ({ ...p, logo: plogo(p.short, p.hue) }));
+
+function partnerCard(p, editorial) {
+  return `
+   <a class="partner-card${editorial ? ' partner-card-lead' : ''}" href="${p.url}" target="_blank" rel="noopener"
+     aria-label="${p.name} — opens in a new tab">
+     <span class="partner-logo-box"><img src="${p.logo}" alt="${p.alt}" loading="lazy" width="200" height="56"></span>
+     ${editorial ? `<span class="partner-name">${p.name}</span><span class="partner-desc">${p.descriptor}</span>` : ''}
+   </a>`;
+}
+
+function renderPartners() {
+  const byTier = t => PARTNERS.filter(p => p.tier === t);
+  document.getElementById('partnersAssociation').innerHTML =
+    byTier('association').map(p => partnerCard(p, true)).join('');
+  document.getElementById('partnersStrategic').innerHTML =
+    byTier('strategic').map(p => partnerCard(p, false)).join('');
+
+  const supporting = byTier('supporting');
+  const wrap = document.getElementById('partnersSupportingWrap');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || supporting.length <= 6) {
+    // Static wall: every logo visible at once, nothing relies on motion.
+    wrap.classList.add('static');
+    wrap.innerHTML = `<div class="partner-wall">${supporting.map(p => partnerCard(p, false)).join('')}</div>`;
+  } else {
+    // Seamless marquee: the list is duplicated so the loop has no visible seam.
+    const cards = supporting.map(p => partnerCard(p, false)).join('');
+    wrap.innerHTML = `<div class="partner-marquee-track">${cards}${cards}</div>`;
+  }
+}
+renderPartners();
+
 // ===== Speakers =====
 const SPK=[
  {n:'Dr. Anneke van Dijk',r:'Lead Researcher',o:'Wageningen UR',fl:'🇳🇱',i:'AD'},
@@ -97,6 +161,89 @@ function renderSpk(q=''){
 }
 renderSpk();
 document.getElementById('spk-search').oninput=e=>renderSpk(e.target.value);
+
+// ===== Pricing phases =====
+// Single source of truth for the offer: change dates/prices here only —
+// every status label, ribbon, disabled state and the countdown below all
+// derive from this array, recomputed fresh against the current time.
+const PRICING_PHASES = [
+  { name: 'Free Pass', price: 0,     start: '2026-01-01', end: '2026-07-31', note: 'Free entry — limited time' },
+  { name: 'Phase 2',   price: 5000,  start: '2026-08-01', end: '2026-10-31' },
+  { name: 'Phase 3',   price: 10000, start: '2026-11-01', end: '2027-02-19' },
+];
+const PRICING_BENEFITS = [
+  'All keynotes & sessions',
+  'Exhibition floor access',
+  'Hands-on workshops',
+  'Welcome reception & meals',
+];
+
+// IST-safe parsing so the boundary day of each window behaves correctly
+// regardless of the visitor's own timezone.
+const istStart = s => new Date(s + 'T00:00:00+05:30');
+const istEnd = s => new Date(s + 'T23:59:59+05:30');
+const fmtLong = d => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' });
+const fmtShort = d => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' });
+const priceLabel = p => p === 0 ? 'Free' : `₹${p.toLocaleString('en-IN')}`;
+
+function phaseStatus(phase, now) {
+  if (now < istStart(phase.start)) return 'upcoming';
+  if (now > istEnd(phase.end)) return 'expired';
+  return 'active';
+}
+function phaseDateLine(phase) {
+  return phase.price === 0
+    ? `Free until ${fmtLong(istEnd(phase.end))}`
+    : `${fmtShort(istStart(phase.start))} – ${fmtLong(istEnd(phase.end))}`;
+}
+
+function renderPricing() {
+  const now = new Date();
+  const last = PRICING_PHASES[PRICING_PHASES.length - 1];
+  const allClosed = now > istEnd(last.end);
+  const active = PRICING_PHASES.find(p => phaseStatus(p, now) === 'active');
+
+  document.getElementById('pricingGrid').innerHTML = PRICING_PHASES.map(phase => {
+    const status = allClosed ? 'expired' : phaseStatus(phase, now);
+    let ctaLabel, disabled = false, statusLabel;
+    if (allClosed) { ctaLabel = 'Registration closed'; disabled = true; statusLabel = 'Registration closed'; }
+    else if (status === 'expired') { ctaLabel = 'Closed'; disabled = true; statusLabel = 'Closed'; }
+    else if (status === 'upcoming') { ctaLabel = `Opens ${fmtShort(istStart(phase.start))}`; disabled = true; statusLabel = ctaLabel; }
+    else { ctaLabel = `Choose ${phase.name}`; statusLabel = 'Active now'; }
+
+    return `
+    <div class="price reveal in${status === 'active' ? ' feature' : ''}${status === 'expired' ? ' expired' : ''}${status === 'upcoming' ? ' upcoming' : ''}">
+      ${status === 'active' ? '<span class="ribbon">Active now</span>' : ''}
+      <h3>${phase.name}</h3>
+      <div class="amt">${priceLabel(phase.price)}${phase.price ? '<small>/pass</small>' : ''}</div>
+      <p class="price-dates">${phaseDateLine(phase)}</p>
+      <p class="price-status">${statusLabel}</p>
+      ${status === 'active' ? `<p class="price-countdown" data-end="${phase.end}"></p>` : ''}
+      <ul>${PRICING_BENEFITS.map(b => `<li>${b}</li>`).join('')}</ul>
+      <button type="button" class="btn ${status === 'active' ? 'btn-primary' : 'btn-ghost'}"${disabled ? ' disabled aria-disabled="true"' : ' data-cta="1"'}>${ctaLabel}</button>
+    </div>`;
+  }).join('');
+
+  document.querySelectorAll('#pricingGrid [data-cta]').forEach(b =>
+    b.addEventListener('click', () => document.getElementById('regform').scrollIntoView({ behavior: 'smooth' }))
+  );
+
+  document.getElementById('regWidgetText').textContent = allClosed
+    ? 'Registration is now closed.'
+    : `${active.name} closes ${fmtLong(istEnd(active.end))}`;
+
+  tickPricingCountdown();
+}
+function tickPricingCountdown() {
+  document.querySelectorAll('.price-countdown').forEach(el => {
+    const diff = istEnd(el.dataset.end) - new Date();
+    if (diff <= 0) { el.textContent = ''; return; }
+    const d = Math.floor(diff / 864e5), h = Math.floor(diff % 864e5 / 36e5);
+    el.textContent = `Ends in ${d}d ${h}h`;
+  });
+}
+renderPricing();
+setInterval(tickPricingCountdown, 60000);
 
 // ===== FAQ =====
 const FAQ=[
