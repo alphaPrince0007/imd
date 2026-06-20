@@ -23,7 +23,7 @@ const SITE_CONFIG = {
     { label: "Register", href: "#register", cta: true },
   ],
   tagline:
-    "Where Dutch precision meets Indian cultivation. Pune · 12–14 November 2026.",
+    "Where Global precision meets Indian cultivation. Pune · 12–14 November 2026.",
   contact: {
     email: "info@indiamushroomdays.in",
     phone: "(+91)-9811775220",
@@ -65,18 +65,22 @@ const SITE_CONFIG = {
    Section anchors (#about, #schedule…) only resolve on index.html. Every
    other page is a flat sibling, so on those pages we prefix anchor hrefs
    with "index.html" — SITE_CONFIG itself stays page-agnostic. */
-const ON_INDEX = !/[\w-]+\.html$/.test(location.pathname) || /(^|\/)index\.html$/.test(location.pathname);
+const ON_INDEX =
+  !/[\w-]+\.html$/.test(location.pathname) ||
+  /(^|\/)index\.html$/.test(location.pathname);
 function resolveHref(href) {
   return href.startsWith("#") && !ON_INDEX ? "index.html" + href : href;
 }
 
 /* ---------- Header ---------- */
 function renderHeader(cfg) {
-  const links = cfg.nav.map(item =>
-    item.cta
-      ? `<a href="${resolveHref(item.href)}" class="btn btn-primary" style="padding:9px 18px">${item.label}</a>`
-      : `<a href="${resolveHref(item.href)}">${item.label}</a>`
-  ).join("\n      ");
+  const links = cfg.nav
+    .map((item) =>
+      item.cta
+        ? `<a href="${resolveHref(item.href)}" class="btn btn-primary" style="padding:9px 18px">${item.label}</a>`
+        : `<a href="${resolveHref(item.href)}">${item.label}</a>`,
+    )
+    .join("\n      ");
 
   return `
   <nav id="nav"><div class="wrap nav-in">
@@ -90,14 +94,18 @@ function renderHeader(cfg) {
 
 /* ---------- Footer ---------- */
 function renderFooter(cfg) {
-  const cols = cfg.footerCols.map(col => `
-      <div><h5>${col.title}</h5>${
-        col.links.map(l => `<a href="${resolveHref(l.href)}">${l.label}</a>`).join("")
-      }</div>`).join("");
+  const cols = cfg.footerCols
+    .map(
+      (col) => `
+      <div><h5>${col.title}</h5>${col.links
+        .map((l) => `<a href="${resolveHref(l.href)}">${l.label}</a>`)
+        .join("")}</div>`,
+    )
+    .join("");
 
-  const socials = cfg.social.map(s =>
-    `<a href="${s.href}" aria-label="${s.label}">${s.short}</a>`
-  ).join("");
+  const socials = cfg.social
+    .map((s) => `<a href="${s.href}" aria-label="${s.label}">${s.short}</a>`)
+    .join("");
 
   return `
   <div class="wrap">
@@ -141,17 +149,18 @@ function mountChrome() {
       btn.setAttribute("aria-expanded", String(open));
     });
     // Close menu after tapping a link on mobile
-    links.querySelectorAll("a").forEach(a =>
+    links.querySelectorAll("a").forEach((a) =>
       a.addEventListener("click", () => {
         links.classList.remove("open");
         btn.setAttribute("aria-expanded", "false");
-      })
+      }),
     );
   }
 
   // Newsletter button feedback
   const news = document.querySelector("[data-news]");
-  if (news) news.addEventListener("click", () => (news.textContent = "Subscribed ✓"));
+  if (news)
+    news.addEventListener("click", () => (news.textContent = "Subscribed ✓"));
 }
 
 // Mount as early as possible so the rest of app.js can find nav elements.
