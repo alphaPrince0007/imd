@@ -1,0 +1,126 @@
+// ===== Scroll-driven harvest canvas =====
+(function(){
+  const canvas=document.getElementById('harvest-canvas');
+  const ctx=canvas.getContext('2d');
+  const imgs=[];let loaded=0;
+  FRAMES.forEach((src,i)=>{const im=new Image();im.onload=()=>{loaded++;if(i===0)draw(0);};im.src=src;imgs[i]=im;});
+  function fit(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;draw(curr);}
+  let curr=0;
+  function draw(idx){
+    const im=imgs[idx];if(!im||!im.complete)return;
+    const cw=canvas.width,ch=canvas.height,iw=im.width,ih=im.height;
+    const r=Math.max(cw/iw,ch/ih),w=iw*r,h=ih*r;
+    ctx.clearRect(0,0,cw,ch);
+    ctx.drawImage(im,(cw-w)/2,(ch-h)/2,w,h);
+  }
+  const section=document.getElementById('home');
+  function onScroll(){
+    const rect=section.getBoundingClientRect();
+    const total=section.offsetHeight-window.innerHeight;
+    const prog=Math.min(1,Math.max(0,-rect.top/total));
+    const idx=Math.min(FRAMES.length-1,Math.floor(prog*(FRAMES.length-1)));
+    if(idx!==curr){curr=idx;draw(idx);}
+  }
+  window.addEventListener('resize',fit);
+  window.addEventListener('scroll',onScroll,{passive:true});
+  fit();
+})();
+
+// ===== Countdown =====
+(function(){
+  const target=new Date('2026-11-12T09:00:00+05:30').getTime();
+  const eD=document.getElementById('cd-d'),eH=document.getElementById('cd-h'),eM=document.getElementById('cd-m'),eS=document.getElementById('cd-s');
+  function tick(){
+    const d=target-Date.now();if(d<0)return;
+    const D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);
+    eD.textContent=D;eH.textContent=H;eM.textContent=String(M).padStart(2,'0');eS.textContent=String(S).padStart(2,'0');
+  }
+  setInterval(tick,1000);tick();
+})();
+
+// ===== Nav scrolled =====
+addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>40);
+  document.getElementById('toTop').classList.toggle('show',scrollY>600);
+},{passive:true});
+document.getElementById('toTop').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+// ===== Reveal on scroll =====
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.dataset&&e.target.querySelector('[data-count]')){}}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ===== Count up stats =====
+const co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){const b=e.target;const t=+b.dataset.count;let n=0;const step=t/40;
+    const iv=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(iv);}b.textContent=Math.floor(n).toLocaleString();},25);co.unobserve(b);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(b=>co.observe(b));
+
+// ===== Schedule data =====
+const SESS=[
+ {time:'Day 1 · 09:30',t:'Opening Keynote: The Dutch Yield Model',w:'Dr. Anneke van Dijk · Wageningen UR',track:'science',tag:'Keynote'},
+ {time:'Day 1 · 11:00',t:'Climate Control for Indian Tunnels',w:'Rohan Mehta · ClimaGrow',track:'tech',tag:'Workshop'},
+ {time:'Day 1 · 14:00',t:'Substrate Science Deep Dive',w:'Prof. S. Iyer · IARI',track:'science',tag:'Session'},
+ {time:'Day 2 · 09:30',t:'Autonomous Harvesting Live Demo',w:'Lars Bakker · RoboPick',track:'tech',tag:'Demo'},
+ {time:'Day 2 · 11:30',t:'Building an Export Supply Chain',w:'Priya Nair · AgriExport India',track:'business',tag:'Session'},
+ {time:'Day 2 · 15:00',t:'Financing Your Farm Expansion',w:'Vikram Shah · NABARD',track:'business',tag:'Panel'},
+ {time:'Day 3 · 10:00',t:'Post-Harvest Cold Chain',w:'Dr. Femke Jansen · CoolChain NL',track:'tech',tag:'Workshop'},
+ {time:'Day 3 · 13:00',t:'Grower Awards & Closing',w:'IMD Council',track:'business',tag:'Awards'},
+];
+function renderSess(f){
+  document.getElementById('sessions').innerHTML=SESS.filter(s=>f==='all'||s.track===f).map(s=>`
+   <div class="sess"><div class="time">${s.time}</div>
+   <div><h4>${s.t}</h4><div class="who">${s.w}</div></div>
+   <span class="tag">${s.tag}</span></div>`).join('');
+}
+renderSess('all');
+document.querySelectorAll('.filt').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.filt').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');renderSess(b.dataset.f);
+});
+
+// ===== Speakers =====
+const SPK=[
+ {n:'Dr. Anneke van Dijk',r:'Lead Researcher',o:'Wageningen UR',fl:'🇳🇱',i:'AD'},
+ {n:'Rohan Mehta',r:'Founder & CEO',o:'ClimaGrow',fl:'🇮🇳',i:'RM'},
+ {n:'Lars Bakker',r:'CTO',o:'RoboPick',fl:'🇳🇱',i:'LB'},
+ {n:'Priya Nair',r:'Head of Trade',o:'AgriExport India',fl:'🇮🇳',i:'PN'},
+ {n:'Prof. S. Iyer',r:'Professor',o:'IARI New Delhi',fl:'🇮🇳',i:'SI'},
+ {n:'Dr. Femke Jansen',r:'Cold Chain Lead',o:'CoolChain NL',fl:'🇳🇱',i:'FJ'},
+ {n:'Vikram Shah',r:'Agri Finance Lead',o:'NABARD',fl:'🇮🇳',i:'VS'},
+ {n:'Maud de Vries',r:'Substrate Scientist',o:'Sylvan Europe',fl:'🇳🇱',i:'MV'},
+];
+function renderSpk(q=''){
+  document.getElementById('spk-grid').innerHTML=SPK.filter(s=>(s.n+s.o+s.r).toLowerCase().includes(q.toLowerCase())).map(s=>`
+   <div class="spk"><div class="spk-img"><span class="flag">${s.fl}</span>${s.i}</div>
+   <div class="spk-body"><h4>${s.n}</h4><div class="role">${s.r}</div><div class="org">${s.o}</div></div></div>`).join('');
+}
+renderSpk();
+document.getElementById('spk-search').oninput=e=>renderSpk(e.target.value);
+
+// ===== FAQ =====
+const FAQ=[
+ ['How do I register?','Choose a ticket tier above and complete the registration form. You will receive confirmation and a calendar invite by email within minutes.'],
+ ['What is included in my ticket?','All passes include keynotes, sessions and exhibition access. Standard and VIP add workshops, meals and priority demo seating. See the pricing table for full details.'],
+ ['Can I transfer my registration?','Yes. Transfers to another person are free up to 7 days before the event — just email us with the new attendee details.'],
+ ['Are refunds available?','Full refunds are available up to 60 days before the event, and 50% up to 30 days before. After that, you may transfer your pass instead.'],
+ ['How do I become a sponsor or exhibitor?','Email hello@indiamushroomdays.in for the sponsorship pack. Booth space on the exhibition floor is limited and allocated first-come.'],
+ ['Is the venue accessible?','Yes — the Agri-Tech Convention Centre is fully wheelchair accessible with step-free routes, accessible restrooms and reserved seating.'],
+ ['Will sessions be recorded?','Keynotes and selected sessions are recorded and shared with all registered attendees within two weeks of the event.'],
+ ['Do international attendees get visa support?','Yes. After registering, request an official invitation letter to support your Indian e-Visa or visa application.'],
+ ['Are meals provided?','Standard and VIP passes include lunch on all three days. Early Bird includes the welcome reception only.'],
+ ['Is there a student rate?','Verified students receive 40% off Early Bird pricing. Email us with proof of enrolment for a discount code.'],
+ ['Can I bring a group?','Groups of five or more receive 15% off. Contact us before registering to arrange group billing.'],
+ ['What language are sessions in?','All main-stage sessions are in English, with live Hindi and Marathi interpretation available on headsets.'],
+ ['Where can I park?','Free on-site parking is available, plus partner-hotel shuttles every 30 minutes during event hours.'],
+ ['Is there a dress code?','Smart casual. The terrace evening for VIP guests is also smart casual.'],
+ ['How do I contact the organisers?','Email hello@indiamushroomdays.in or call +91 20 1234 5678, Monday to Friday, 9am–6pm IST.'],
+];
+document.getElementById('faqs').innerHTML=FAQ.map((f,i)=>`
+ <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">${f[0]}<span class="ico">+</span></button>
+ <div class="faq-a"><p>${f[1]}</p></div></div>`).join('');
+function toggleFaq(b){
+  const open=b.getAttribute('aria-expanded')==='true';
+  b.setAttribute('aria-expanded',!open);
+  const a=b.nextElementSibling;a.style.maxHeight=open?0:a.scrollHeight+'px';
+}
