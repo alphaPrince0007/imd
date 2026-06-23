@@ -23,7 +23,12 @@ const SITE_CONFIG = {
     { label: "Venue", href: "#venue" },
     { label: "Memories", href: "memories.html" },
     { label: "FAQ", href: "#faq" },
-    { label: "Sponsor", href: "#partners", cta: true, gold: true },
+    {
+      label: "Sponsor",
+      href: "https://www.cognitoforms.com/IMD27/SponsorIMD27",
+      cta: true,
+      gold: true,
+    },
   ],
   tagline:
     "Where Global precision meets Indian cultivation. New Delhi · 19-21 February 2027.",
@@ -116,10 +121,6 @@ function renderFooter(cfg) {
       <div>
         <div class="logo" style="margin-bottom:16px"><img src="${cfg.logoImage}" alt="${cfg.brand} logo" class="logo-img" loading="lazy">${cfg.brand}</div>
         <p>${cfg.tagline}</p>
-        <div class="news">
-          <input type="email" placeholder="Newsletter email" aria-label="Newsletter signup">
-          <button class="btn btn-primary" data-news>Join</button>
-        </div>
       </div>
       ${cols}
       <div>

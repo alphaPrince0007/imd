@@ -1649,3 +1649,106 @@ footer {
     transition: none !important;
   }
 }
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* HOST CITY */
+#host-city .split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: start;
+}
+.section-tag {
+  display: inline-block;
+  font-family: "Space Grotesk";
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+}
+#host-city h3 {
+  font-size: clamp(1rem, 3vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+#host-city p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin-bottom: 16px;
+  max-width: 560px;
+}
+#host-city .host-sub {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+#host-city .video-wrapper {
+  margin-top: 1rem;
+}
+.video-highlights {
+  display: grid;
+  gap: 14px;
+  margin: 28px 0 32px;
+}
+.video-highlights > div {
+  padding: 14px 18px;
+  background: var(--surface);
+  border-left: 2px solid var(--accent);
+}
+.video-highlights strong {
+  display: block;
+  font-family: "Space Grotesk";
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.video-highlights span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Space Grotesk";
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 26px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: 0.25s;
+}
+.video-btn::after {
+  content: "→";
+  transition: transform 0.25s;
+}
+.video-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.video-btn:hover::after {
+  transform: translateX(4px);
+}
