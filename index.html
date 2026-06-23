@@ -54,67 +54,270 @@
           <div class="hero-glow" aria-hidden="true"></div>
           <div class="hero-content">
             <div class="hero-inner">
-              <!-- <span class="eyebrow"
-                >New Delhi, India · 19-21 February 2027</span
-              > -->
-              <h1 style="margin-top: 50px">
-                India Mushroom Days'27
-                <span class="serif">Meet the Future</span>
-              </h1>
-              <p>
-                2nd Biggest Exhibition of global mushroom mushroom industry in
-                India, bringing together growers, suppliers, researchers and
-                policymakers to share knowledge, showcase innovations and drive
-                the future of mushroom cultivation in India.
-              </p>
-              <div class="hero-meta">
-                <span>🗓 <span class="accent">19–21 Feb 2027</span></span>
-                <span>📍 <span class="accent">New Delhi, India</span></span>
+              <div class="hero-copy">
+                <!-- <span class="eyebrow"
+                  >New Delhi, India · 19-21 February 2027</span
+                > -->
+                <h1 style="margin-top: 50px">
+                  India Mushroom Days'27
+                  <span class="serif">Meet the Future</span>
+                </h1>
+                <p>
+                  2nd Biggest Exhibition of global mushroom mushroom industry
+                  in India, bringing together growers, suppliers, researchers
+                  and policymakers to share knowledge, showcase innovations
+                  and drive the future of mushroom cultivation in India.
+                </p>
+                <div class="hero-meta">
+                  <span>🗓 <span class="accent">19–21 Feb 2027</span></span>
+                  <span>📍 <span class="accent">New Delhi, India</span></span>
+                </div>
+                <div
+                  class="countdown"
+                  id="countdown"
+                  aria-label="Countdown to event"
+                >
+                  <div class="cd-unit">
+                    <b id="cd-d">--</b><small>Days</small>
+                  </div>
+                  <div class="cd-unit">
+                    <b id="cd-h">--</b><small>Hours</small>
+                  </div>
+                  <div class="cd-unit">
+                    <b id="cd-m">--</b><small>Mins</small>
+                  </div>
+                  <div class="cd-unit">
+                    <b id="cd-s">--</b><small>Secs</small>
+                  </div>
+                </div>
+                <div class="free-pass-badge" aria-live="polite">
+                  <span class="pulse"></span>
+                  <span id="fpLabel">Free Visitor Pass</span>
+                  <span class="fp-countdown" id="fpCountdown"></span>
+                </div>
+                <!-- TODO: point these at dedicated #sponsors / a real
+                     registration flow once they exist — #register and
+                     #partners are the closest live sections for now. -->
+                <div class="hero-cta" style="margin-top: 18px">
+                  <a href="#register" class="btn btn-primary"
+                    >Get Free Pass →</a
+                  >
+                  <a
+                    href="https://www.cognitoforms.com/IMD27/SponsorIMD27"
+                    target="_blank"
+                    class="btn btn-gold"
+                    >Become a Sponsor</a
+                  >
+                  <a
+                    href="https://www.cognitoforms.com/IMD27/ExhibitorIMD27"
+                    target="_blank"
+                    class="btn btn-primary"
+                    >Exhibitor Registration</a
+                  >
+                </div>
+                <!-- <div class="reg-widget">
+                  <span class="pulse"></span> 3,840 growers already registered
+                </div> -->
               </div>
-              <div
-                class="countdown"
-                id="countdown"
-                aria-label="Countdown to event"
-              >
-                <div class="cd-unit">
-                  <b id="cd-d">--</b><small>Days</small>
-                </div>
-                <div class="cd-unit">
-                  <b id="cd-h">--</b><small>Hours</small>
-                </div>
-                <div class="cd-unit">
-                  <b id="cd-m">--</b><small>Mins</small>
-                </div>
-                <div class="cd-unit">
-                  <b id="cd-s">--</b><small>Secs</small>
-                </div>
-              </div>
-              <div class="free-pass-badge" aria-live="polite">
-                <span class="pulse"></span>
-                <span id="fpLabel">Free Visitor Pass</span>
-                <span class="fp-countdown" id="fpCountdown"></span>
-              </div>
-              <!-- TODO: point these at dedicated #sponsors / a real
-                   registration flow once they exist — #register and
-                   #partners are the closest live sections for now. -->
-              <div class="hero-cta" style="margin-top: 18px">
-                <a href="#register" class="btn btn-primary">Get Free Pass →</a>
+
+              <!-- Mascot — welcomes visitors and doubles as a sponsorship
+                   CTA. Pure inline SVG so it stays crisp/themeable and the
+                   speech bubble can be a real, accessible link. -->
+              <div class="mascot-wrap">
+                <div class="mascot-glow" aria-hidden="true"></div>
+                <svg
+                  class="mascot"
+                  viewBox="0 0 240 300"
+                  role="img"
+                  aria-label="Mushroom mascot inviting sponsors"
+                  focusable="false"
+                >
+                  <!-- sprouts -->
+                  <g
+                    class="mascot-sprout sprout-l"
+                    transform="translate(70,283)"
+                  >
+                    <rect
+                      x="-2"
+                      y="-2"
+                      width="4"
+                      height="14"
+                      fill="var(--success)"
+                    />
+                    <path
+                      d="M-2 -2 Q-12 -10 -4 -18 Q4 -10 -2 -2Z"
+                      fill="var(--success)"
+                    />
+                  </g>
+                  <g
+                    class="mascot-sprout sprout-r"
+                    transform="translate(172,286)"
+                  >
+                    <rect
+                      x="-2"
+                      y="-4"
+                      width="4"
+                      height="16"
+                      fill="var(--success)"
+                    />
+                    <path
+                      d="M2 -4 Q14 -13 6 -22 Q-3 -13 2 -4Z"
+                      fill="var(--success)"
+                    />
+                  </g>
+
+                  <!-- boots -->
+                  <ellipse
+                    cx="101"
+                    cy="283"
+                    rx="18"
+                    ry="10"
+                    fill="var(--boot-brown)"
+                  />
+                  <ellipse
+                    cx="139"
+                    cy="283"
+                    rx="18"
+                    ry="10"
+                    fill="var(--boot-brown)"
+                  />
+
+                  <!-- legs/shorts -->
+                  <rect
+                    x="88"
+                    y="246"
+                    width="26"
+                    height="34"
+                    rx="10"
+                    fill="var(--khaki)"
+                  />
+                  <rect
+                    x="126"
+                    y="246"
+                    width="26"
+                    height="34"
+                    rx="10"
+                    fill="var(--khaki)"
+                  />
+
+                  <!-- left arm -->
+                  <ellipse
+                    cx="72"
+                    cy="205"
+                    rx="13"
+                    ry="30"
+                    fill="var(--khaki)"
+                    transform="rotate(14 72 205)"
+                  />
+                  <circle cx="64" cy="232" r="10" fill="var(--cream)" />
+
+                  <!-- torso / utility shirt -->
+                  <path
+                    d="M78 185 C78 168 96 158 120 158 C144 158 162 168 162 185 L158 248 C120 260 82 260 82 248 Z"
+                    fill="var(--khaki)"
+                  />
+                  <rect
+                    x="104"
+                    y="198"
+                    width="32"
+                    height="22"
+                    rx="4"
+                    fill="var(--khaki-dark)"
+                    opacity="0.5"
+                  />
+                  <path
+                    d="M84 162 L150 252"
+                    stroke="var(--boot-brown)"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    opacity="0.85"
+                  />
+
+                  <!-- right arm (waves) -->
+                  <g class="mascot-arm-r">
+                    <ellipse
+                      cx="168"
+                      cy="195"
+                      rx="13"
+                      ry="30"
+                      fill="var(--khaki)"
+                      transform="rotate(-22 168 195)"
+                    />
+                    <circle cx="180" cy="168" r="10" fill="var(--cream)" />
+                  </g>
+
+                  <!-- head -->
+                  <ellipse
+                    cx="120"
+                    cy="130"
+                    rx="52"
+                    ry="50"
+                    fill="var(--cream)"
+                  />
+                  <path
+                    d="M56 118 C56 46 84 22 120 22 C156 22 184 46 184 118 C156 132 84 132 56 118 Z"
+                    fill="var(--accent)"
+                  />
+                  <path
+                    d="M64 100 C70 56 92 32 120 28"
+                    stroke="var(--accent-bright)"
+                    stroke-width="7"
+                    fill="none"
+                    stroke-linecap="round"
+                    opacity="0.5"
+                  />
+                  <path
+                    d="M56 118 C84 132 156 132 184 118 L184 123 C156 137 84 137 56 123 Z"
+                    fill="var(--soil)"
+                    opacity="0.15"
+                  />
+                  <circle cx="88" cy="55" r="7" fill="var(--white)" />
+                  <circle cx="122" cy="38" r="5.5" fill="var(--white)" />
+                  <circle cx="152" cy="60" r="7" fill="var(--white)" />
+                  <circle cx="104" cy="80" r="4.5" fill="var(--white)" />
+                  <circle cx="142" cy="88" r="5" fill="var(--white)" />
+
+                  <g class="mascot-eyes">
+                    <ellipse cx="100" cy="142" rx="8" ry="10" fill="var(--dark)" />
+                    <ellipse cx="140" cy="142" rx="8" ry="10" fill="var(--dark)" />
+                    <circle cx="103" cy="138" r="2.6" fill="var(--white)" />
+                    <circle cx="143" cy="138" r="2.6" fill="var(--white)" />
+                  </g>
+                  <ellipse
+                    cx="84"
+                    cy="158"
+                    rx="9"
+                    ry="5"
+                    fill="var(--accent)"
+                    opacity="0.22"
+                  />
+                  <ellipse
+                    cx="156"
+                    cy="158"
+                    rx="9"
+                    ry="5"
+                    fill="var(--accent)"
+                    opacity="0.22"
+                  />
+                  <path
+                    d="M102 162 Q120 176 138 162"
+                    stroke="var(--soil)"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                </svg>
                 <a
+                  class="mascot-bubble"
                   href="https://www.cognitoforms.com/IMD27/SponsorIMD27"
                   target="_blank"
-                  class="btn btn-gold"
-                  >Become a Sponsor</a
+                  rel="noopener"
+                  aria-label="Sponsor India Mushroom Days — become a partner"
                 >
-                <a
-                  href="https://www.cognitoforms.com/IMD27/ExhibitorIMD27"
-                  target="_blank"
-                  class="btn btn-primary"
-                  >Exhibitor Registration</a
-                >
+                  <strong>Sponsor us!</strong>
+                  <small>Become a partner →</small>
+                </a>
               </div>
-              <!-- <div class="reg-widget">
-                <span class="pulse"></span> 3,840 growers already registered
-              </div> -->
             </div>
           </div>
           <!-- <div class="scroll-hint">
@@ -262,10 +465,9 @@
         <button class="filt" data-f="tech">Technology</button>
         <button class="filt" data-f="business">Business</button>
       </div>
-      <!-- <div id="sessions"></div> -->
-      <h1 style="font-size: 2rem; margin: 14px; padding: 100px;">Coming Soon</h1>
+      <div id="sessions"></div>
+      <!-- <h1 style="font-size: 2rem; margin: 14px; padding: 100px;">Coming Soon</h1> -->
     </section>
-
     <!-- PARTNERS -->
     <section id="partners" class="wrap">
       <div class="sec-head reveal">
