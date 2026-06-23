@@ -26,6 +26,7 @@ const SITE_CONFIG = {
     {
       label: "Sponsor",
       href: "https://www.cognitoforms.com/IMD27/SponsorIMD27",
+      target: "_blank",
       cta: true,
       gold: true,
     },
